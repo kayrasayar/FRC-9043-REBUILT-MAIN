@@ -4,7 +4,7 @@
 
 ## 📖 Proje Hakkında
 
-Bu depo, FRC 2026 "Rebuilt" sezonu için geliştirilmiş, yüksek doğruluklu bir robot simülasyonu ve kontrol kodunu içerir. Projenin temel amacı, gerçek bir robot olmadan yazılım geliştirme süreçlerini en üst seviyeye çıkarmak, otonom rotaları test etmek ve gelişmiş görüntü işleme algoritmalarını sanal bir ortamda doğrulamaktır.
+FRC 2026 "Rebuilt" sezonu için geliştirilmiş, yüksek doğruluklu bir robot simülasyonu ve kontrol kodunu içerir. Projenin temel amacı, gerçek bir robot olmadan yazılım geliştirme süreçlerini en üst seviyeye çıkarmak, otonom rotaları test etmek ve gelişmiş görüntü işleme algoritmalarını sanal bir ortamda doğrulamaktır.
 
 Kod tabanı, modern FRC yazılım standartlarına uygun olarak **Java** ile yazılmıştır ve fizik tabanlı simülasyonlar için sektör standardı kütüphaneleri entegre eder.
 
