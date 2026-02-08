@@ -7,6 +7,7 @@ import org.photonvision.simulation.PhotonCameraSim;
 import org.photonvision.simulation.VisionSystemSim;
 import org.photonvision.targeting.PhotonPipelineResult;
 import org.photonvision.targeting.PhotonTrackedTarget;
+
 import frc.robot.constants.FieldConstants;
 import frc.robot.constants.VisionConstants;
 import frc.robot.subsystems.vision.enums.AprilTagID;
@@ -71,5 +72,4 @@ public class SimCamera implements CameraInterface {
   public PhotonPipelineResult getPipelineResult() {
     return result;
   }
-  
 }

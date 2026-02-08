@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.photonvision.targeting.PhotonPipelineResult;
 import org.photonvision.targeting.PhotonTrackedTarget;
+
 import frc.robot.subsystems.vision.enums.AprilTagID;
 
 public interface CameraInterface {

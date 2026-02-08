@@ -7,6 +7,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.drivetrain.DrivetrainSubsystem;
 
+import com.pathplanner.lib.config.PIDConstants;
+
 
 /**
  * Auto Balance command using a simple PID controller. Created by Team 3512
@@ -17,6 +19,13 @@ public class AutoBalanceCommand extends Command
 
   private final DrivetrainSubsystem swerveSubsystem;
   private final PIDController   controller;
+
+  public static final double DRIVE_P = 5;
+  public static final double DRIVE_I = 0.0;
+  public static final double DRIVE_D = 0.0;
+  public static final double DRIVE_IZ = 0.0;
+
+  public static final PIDConstants DRIVE_PID = new PIDConstants(DRIVE_P, DRIVE_I, DRIVE_D, DRIVE_IZ);
 
   public AutoBalanceCommand(DrivetrainSubsystem swerveSubsystem)
   {

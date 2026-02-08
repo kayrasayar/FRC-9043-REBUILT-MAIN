@@ -2,33 +2,43 @@ package frc.robot.constants;
 
 import static edu.wpi.first.units.Units.Meter;
 import edu.wpi.first.apriltag.AprilTagFieldLayout;
+import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.geometry.Translation3d;
+import edu.wpi.first.units.measure.Distance;
 import edu.wpi.first.wpilibj.Filesystem;
 import java.io.IOException;
 
 public class FieldConstants {
-    public static final Translation3d ALGEA_OUTPUT_LOCATION = new Translation3d(6, 0, 0.41);
-    public static final Translation3d ALGEA_OUTPUT_TOLERANCE = new Translation3d(6, 0, 0.41);
+  public static final Translation3d ALGEA_OUTPUT_LOCATION = new Translation3d(6, 0, 0.41);
+  public static final Translation3d ALGEA_OUTPUT_TOLERANCE = new Translation3d(6, 0, 0.41);
 
-    public static final Translation2d BLUE_START_LOCATION = new Translation2d(Meter.of(2.5), Meter.of(4));
-    public static final Translation2d RED_START_LOCATION = new Translation2d(Meter.of(14.5), Meter.of(4));
 
-    // Dosya yolu
-    private static final String layoutPath = Filesystem.getDeployDirectory() + "/apriltags/2026-rebuilt-welded.json";
-    
-    // Yardımcı metot ile güvenli yükleme
-    public static final AprilTagFieldLayout APRILTAG_FIELD_LAYOUT = loadAprilTagLayout();
+  private static final Distance BLUE_START_X = Meter.of(2.5);
+  private static final Distance BLUE_START_Y = Meter.of(4);
+  private static final Rotation2d BLUE_START_Degrees = Rotation2d.fromDegrees(0);
 
-    private static AprilTagFieldLayout loadAprilTagLayout() {
-        try {
-            // HATA BURADAYDI: loadField yerine doğrudan constructor kullanıyoruz
-            return new AprilTagFieldLayout(layoutPath);
-        } catch (IOException e) {
-            // Eğer dosya bulunamazsa terminale hata basar
-            System.err.println("2026 AprilTag dosyası yüklenemedi! Yol: " + layoutPath);
-            e.printStackTrace();
-            return null; 
-        }
+  private static final Distance RED_START_X = Meter.of(15.5);
+  private static final Distance RED_START_Y = Meter.of(4);
+  private static final Rotation2d RED_START_Degrees = Rotation2d.fromDegrees(180);
+
+  public static final Pose2d BLUE_START_LOCATION = new Pose2d(new Translation2d(BLUE_START_X, BLUE_START_Y), BLUE_START_Degrees);
+  public static final Pose2d RED_START_LOCATION = new Pose2d(new Translation2d(RED_START_X, RED_START_Y), RED_START_Degrees);
+
+  // Dosya yolu
+  private static final String layoutPath = Filesystem.getDeployDirectory() + "/apriltags/2026-rebuilt-welded.json";
+  
+  // Yardımcı metot ile güvenli yükleme
+  public static final AprilTagFieldLayout APRILTAG_FIELD_LAYOUT = loadAprilTagLayout();
+
+  private static AprilTagFieldLayout loadAprilTagLayout() {
+    try {
+      return new AprilTagFieldLayout(layoutPath);
+    } catch (IOException e) {
+      System.err.println("2026 AprilTag Cant Load! Href: " + layoutPath);
+      e.printStackTrace();
+      return null; 
     }
+  }
 }

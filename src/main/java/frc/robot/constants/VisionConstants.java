@@ -15,9 +15,9 @@ public class VisionConstants {
   public static final PoseStrategy ESTIMATION_STRATEGY = PoseStrategy.MULTI_TAG_PNP_ON_COPROCESSOR;
   
   public static final Transform3d ROBOT_TO_CAMERA = new Transform3d(
-    Meters.of(0.20), 
-    Meters.of(0), 
-    Meters.of(0.18), 
+    Meters.of(0.20), // x
+    Meters.of(0), // y
+    Meters.of(0.18), // z
     new Rotation3d(
       Degrees.of(0),      
       Degrees.of(-15),      

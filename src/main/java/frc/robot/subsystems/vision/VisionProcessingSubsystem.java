@@ -6,8 +6,10 @@ import org.photonvision.EstimatedRobotPose;
 import org.photonvision.PhotonPoseEstimator;
 import org.photonvision.targeting.PhotonTrackedTarget;
 
+import edu.wpi.first.math.geometry.Pose3d;
 import edu.wpi.first.math.geometry.Transform3d;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+
 import frc.robot.constants.FieldConstants;
 import frc.robot.constants.VisionConstants;
 import frc.robot.subsystems.vision.enums.AprilTagID;
@@ -36,7 +38,7 @@ public class VisionProcessingSubsystem extends SubsystemBase {
 
   public double getBestTargetYaw() {
     if (getBestTarget() != null) {
-        return getBestTarget().getYaw();
+      return getBestTarget().getYaw();
     }
     return 0.0;
   }
@@ -58,16 +60,31 @@ public class VisionProcessingSubsystem extends SubsystemBase {
   }
   
   public Transform3d getTargetTransform() {
-      var result = camera.getPipelineResult();
-      if (result.hasTargets()) {
-          // Hedefin kameraya göre 3D konumu
-          return result.getBestTarget().getBestCameraToTarget();
-      }
-      return null;
+    var result = camera.getPipelineResult();
+    if (result.hasTargets()) {
+      // Hedefin kameraya göre 3D konumu
+      return result.getBestTarget().getBestCameraToTarget();
+    }
+    return null;
   }
 
   public PhotonTrackedTarget getBestTarget() {
     return camera.getBestTarget();
   }
 
+  public Pose3d[] getVisibleTagPoses() {
+    return camera.getPipelineResult().getTargets().stream()
+      .map(target -> FieldConstants.APRILTAG_FIELD_LAYOUT.getTagPose(target.getFiducialId()))
+      .flatMap(java.util.Optional::stream)
+      .toArray(Pose3d[]::new);
+  }
+  public Pose3d getBestTargetPose() {
+    var bestTarget = getBestTarget();
+    if (bestTarget != null) {
+      // ID'yi alıp sahadaki sabit koordinatını layout'tan çekiyoruz
+      return FieldConstants.APRILTAG_FIELD_LAYOUT.getTagPose(bestTarget.getFiducialId()).orElse(null);
+    }
+    return null;
+  }
+  
 }
