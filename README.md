@@ -52,3 +52,9 @@ Bu proje, sadece bir robotu hareket ettirmenin ötesinde, aşağıdaki gelişmi�
 5.  **AdvantageScope**'u açın, simülasyona bağlanın ve "3D Field" sekmesinden robotu, mermileri ve vision hedeflerini izlemeye başlayın!
 
 ---
+
+## 📋 Yapılacaklar
+
+* 9043 Valkyrie'nin 2026 robot modeli eklenecek.
+* Pathplanner Pathleri yarışmaya uygun düzenlenicek.
+* Apriltag Aimer kalibre edilcek. 
