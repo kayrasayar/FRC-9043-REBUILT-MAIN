@@ -3,19 +3,19 @@ package frc.robot.subsystems.intake;
 import org.ironmaple.simulation.IntakeSimulation;
 import org.ironmaple.simulation.drivesims.SwerveDriveSimulation;
 
-import frc.robot.constants.FuelIntakeConstants;
+import frc.robot.constants.IntakeConstants;
 
 public class IntakeIOSim implements IntakeIO {
   private final IntakeSimulation intakeSim;
 
   public IntakeIOSim(SwerveDriveSimulation driveSim) {
     this.intakeSim = IntakeSimulation.OverTheBumperIntake(
-      FuelIntakeConstants.GAME_PIECE,
+      IntakeConstants.GAME_PIECE,
       driveSim,
-      FuelIntakeConstants.FUEL_INTAKE_WIDTH,
-      FuelIntakeConstants.FUEL_INTAKE_LENGTH, 
-      FuelIntakeConstants.FUEL_INTAKE_SIDE,
-      FuelIntakeConstants.FUEL_INTAKE_CAPATICY 
+      IntakeConstants.FUEL_INTAKE_WIDTH,
+      IntakeConstants.FUEL_INTAKE_LENGTH, 
+      IntakeConstants.FUEL_INTAKE_SIDE,
+      IntakeConstants.FUEL_INTAKE_CAPATICY 
     );
   }
 
@@ -29,6 +29,25 @@ public class IntakeIOSim implements IntakeIO {
     }
   }
 
+  public void OpenIntake(boolean run){
+    if(run) {
+      intakeSim.startIntake();;
+    } 
+    else {
+      intakeSim.stopIntake();
+    }
+  }
+  
+  public void CloseIntake(boolean run){
+    if(run) {
+      intakeSim.startIntake();;
+    } 
+    else {
+      intakeSim.stopIntake();
+    }
+  }
+  
+
   @Override
   public int getGamePieceCount() {
     return intakeSim.getGamePiecesAmount();
@@ -38,4 +57,9 @@ public class IntakeIOSim implements IntakeIO {
   public boolean useFuel(){
     return intakeSim.obtainGamePieceFromIntake();
   }
+
+  public void end(){
+    intakeSim.stopIntake();
+  }
+  
 }

@@ -9,6 +9,7 @@ import static edu.wpi.first.units.Units.Meter;
 import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.controllers.PPHolonomicDriveController;
 
+import edu.wpi.first.math.controller.ProfiledPIDController;
 import edu.wpi.first.math.controller.SimpleMotorFeedforward;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
@@ -55,6 +56,12 @@ public class DrivetrainSubsystem extends SubsystemBase {
   
   private final PPHolonomicDriveController driveController;
 
+  SimpleMotorFeedforward feedforward;
+  
+  ProfiledPIDController controller;
+
+
+
   public DrivetrainSubsystem(File directory){
   
     boolean blueAlliance = DriverStation.getAlliance().orElse(DriverStation.Alliance.Blue) == DriverStation.Alliance.Blue;  
@@ -68,7 +75,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
       throw new RuntimeException(e);
     }
 
-    swerveDrive.setHeadingCorrection(false); // Heading correction should only be used while controlling the robot via angle.
+    swerveDrive.setHeadingCorrection(true); // Heading correction should only be used while controlling the robot via angle.
     swerveDrive.setCosineCompensator(false);//!SwerveDriveTelemetry.isSimulation); // Disables cosine compensation for simulations since it causes discrepancies not seen in real life.
     swerveDrive.setAngularVelocityCompensation(true,
                                                 true,
@@ -535,5 +542,18 @@ public class DrivetrainSubsystem extends SubsystemBase {
    */
   public SwerveDrive getSwerveDrive() {
     return swerveDrive;
+  }
+
+  public void setPIDIZ(double P, double I, double D, double IZ) {
+    this.controller.setP(P);
+    this.controller.setI(I);
+    this.controller.setD(D);
+    this.controller.setIZone(IZ);
+  }
+
+  public void setSGVA(double S, double V, double A) {
+    this.feedforward.setKs(S);
+    this.feedforward.setKv(V);
+    this.feedforward.setKa(A);
   }
 }

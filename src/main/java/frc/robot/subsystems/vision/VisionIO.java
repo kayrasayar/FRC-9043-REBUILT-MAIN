@@ -1,13 +1,11 @@
-package frc.robot.subsystems.vision.interfaces;
+package frc.robot.subsystems.vision;
 
 import java.util.List;
 
 import org.photonvision.targeting.PhotonPipelineResult;
 import org.photonvision.targeting.PhotonTrackedTarget;
 
-import frc.robot.subsystems.vision.enums.AprilTagID;
-
-public interface CameraInterface {
+public interface VisionIO {
     
     void update();
 

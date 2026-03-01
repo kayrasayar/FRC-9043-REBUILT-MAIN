@@ -1,4 +1,4 @@
-package frc.robot.subsystems.vision.enums;
+package frc.robot.subsystems.vision;
 
 public enum AprilTagID {
   Id1(1),

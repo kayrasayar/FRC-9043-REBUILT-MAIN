@@ -4,7 +4,7 @@ import edu.wpi.first.math.geometry.Pose3d;
 import edu.wpi.first.units.measure.Angle;
 import edu.wpi.first.units.measure.LinearVelocity;
 
-import frc.robot.constants.FuelShooterConstants;
+import frc.robot.constants.ShooterConstants;
 import frc.robot.utils.Logger;
 
 import org.ironmaple.simulation.SimulatedArena;
@@ -23,10 +23,20 @@ public class ShooterIOSim implements ShooterIO {
 
     RebuiltFuelOnFly fuelProjectile = new RebuiltFuelOnFly(
       driveSim.getSimulatedDriveTrainPose().getTranslation(), // Robotun sahadaki konumu
-      FuelShooterConstants.FUEL_SHOOTER_POSITION, // Shooter konumu
+      ShooterConstants.FUEL_SHOOTER_POSITION, // Shooter konumu
       driveSim.getDriveTrainSimulatedChassisSpeedsFieldRelative(), // Şasinin anlık hızı
       driveSim.getSimulatedDriveTrainPose().getRotation(), // Robotun baktığı yön
-      FuelShooterConstants.FUEL_SHOOTER_HEIGHT, // Fırlatılış yüksekliği
+      ShooterConstants.FUEL_SHOOTER_HEIGHT, // Fırlatılış yüksekliği
+      velocityMps, // Fırlatılış hızı (m/s)
+      angleRad // Shooter açısı (Derece)
+    );
+
+    RebuiltFuelOnFly fuelProjectile2 = new RebuiltFuelOnFly(
+      driveSim.getSimulatedDriveTrainPose().getTranslation(), // Robotun sahadaki konumu
+      ShooterConstants.FuelShooterConstants2.FUEL_SHOOTER_POSITION, // Shooter konumu
+      driveSim.getDriveTrainSimulatedChassisSpeedsFieldRelative(), // Şasinin anlık hızı
+      driveSim.getSimulatedDriveTrainPose().getRotation(), // Robotun baktığı yön
+      ShooterConstants.FuelShooterConstants2.FUEL_SHOOTER_HEIGHT, // Fırlatılış yüksekliği
       velocityMps, // Fırlatılış hızı (m/s)
       angleRad // Shooter açısı (Derece)
     );
@@ -35,8 +45,14 @@ public class ShooterIOSim implements ShooterIO {
       (poses) -> Logger.log("Shooter/SuccessPath", poses.toArray(Pose3d[]::new)),
       (poses) -> Logger.log("Shooter/FuelPath", poses.toArray(Pose3d[]::new))
     );
+    fuelProjectile2.withProjectileTrajectoryDisplayCallBack(
+      (poses) -> Logger.log("Shooter/SuccessPath2", poses.toArray(Pose3d[]::new)),
+      (poses) -> Logger.log("Shooter/FuelPath2", poses.toArray(Pose3d[]::new))
+    );
 
     SimulatedArena.getInstance().addGamePieceProjectile(fuelProjectile);
-    fuelProjectile.withHitTargetCallBack(onHit); //top hedefe değdiğinde "onhit" çalıştırır.
+    SimulatedArena.getInstance().addGamePieceProjectile(fuelProjectile2);
+    fuelProjectile.withHitTargetCallBack(onHit);
+    fuelProjectile2.withHitTargetCallBack(onHit); //top hedefe değdiğinde "onhit" çalıştırır.
   }
 }

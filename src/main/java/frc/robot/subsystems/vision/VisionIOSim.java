@@ -1,4 +1,4 @@
-package frc.robot.subsystems.vision.implementations;
+package frc.robot.subsystems.vision;
 
 import java.util.List;
 
@@ -10,10 +10,8 @@ import org.photonvision.targeting.PhotonTrackedTarget;
 
 import frc.robot.constants.FieldConstants;
 import frc.robot.constants.VisionConstants;
-import frc.robot.subsystems.vision.enums.AprilTagID;
-import frc.robot.subsystems.vision.interfaces.CameraInterface;
 
-public class SimCamera implements CameraInterface {
+public class VisionIOSim implements VisionIO {
 
   PhotonCamera camera;
 
@@ -21,7 +19,7 @@ public class SimCamera implements CameraInterface {
 
   PhotonPipelineResult result;
 
-  public SimCamera(VisionSystemSim visionSystemSim, String name) {
+  public VisionIOSim(VisionSystemSim visionSystemSim, String name) {
     this.camera = new PhotonCamera(name);
   
     this.cameraSim = new PhotonCameraSim(camera, VisionConstants.CAMERA_PROPERTIES);

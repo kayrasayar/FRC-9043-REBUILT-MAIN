@@ -7,14 +7,15 @@ import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.constants.ControllerConstants;
 import frc.robot.subsystems.drivetrain.DrivetrainSubsystem;
-import frc.robot.subsystems.vision.VisionProcessingSubsystem;
+import frc.robot.subsystems.vision.VisionSubsystem;
+
 import java.util.function.DoubleSupplier;
 import frc.robot.utils.Logger;
 
 public class AimAtTagCommand extends Command {
 
 	private final DrivetrainSubsystem drivetrain;
-	private final VisionProcessingSubsystem vision;
+	private final VisionSubsystem vision;
 	private final PIDController aimController;
 	private final DoubleSupplier manualRotationSupplier;
 	private final DoubleSupplier xSpeedSupplier;
@@ -29,7 +30,7 @@ public class AimAtTagCommand extends Command {
 
 	public AimAtTagCommand(
 		DrivetrainSubsystem drivetrain,
-    VisionProcessingSubsystem vision,
+    VisionSubsystem vision,
 		DoubleSupplier manualRotationSupplier,
 		DoubleSupplier xSpeedSupplier,
 		DoubleSupplier ySpeedSupplier

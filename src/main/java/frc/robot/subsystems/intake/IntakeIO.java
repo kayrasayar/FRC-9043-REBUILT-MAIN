@@ -6,4 +6,10 @@ public interface IntakeIO {
   int getGamePieceCount();
   
   boolean useFuel();
+
+  void CloseIntake(boolean run);
+  
+  void OpenIntake(boolean run);
+
+  void end();
 }

@@ -7,13 +7,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "intake"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "shoot"
+            "pathName": "mustafaintake"
           }
         }
       ]

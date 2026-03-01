@@ -12,16 +12,14 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import frc.robot.constants.FieldConstants;
 import frc.robot.constants.VisionConstants;
-import frc.robot.subsystems.vision.enums.AprilTagID;
-import frc.robot.subsystems.vision.interfaces.CameraInterface;
 
-public class VisionProcessingSubsystem extends SubsystemBase {
+public class VisionSubsystem extends SubsystemBase {
 
-  CameraInterface camera;
+  VisionIO camera;
 
   PhotonPoseEstimator estimator;
 
-  public VisionProcessingSubsystem(CameraInterface camera) {
+  public VisionSubsystem(VisionIO camera) {
     this.camera = camera;
 
     this.estimator = new PhotonPoseEstimator(

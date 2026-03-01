@@ -14,6 +14,14 @@ public class IntakeSubsystem extends SubsystemBase {
     io.setRunning(run);
   }
 
+  public void OpenIntake(boolean run) {
+    io.OpenIntake(run);
+  }
+
+  public void CloseIntake(boolean run) {
+    io.CloseIntake(run);
+  }
+
   @Override
   public void periodic() {
     Logger.log("Intake/FuelCount", io.getGamePieceCount());
@@ -22,4 +30,8 @@ public class IntakeSubsystem extends SubsystemBase {
   public boolean useFuel() {
     return io.useFuel();
   }
+
+  public void end(){
+    io.end();
+  };
 }

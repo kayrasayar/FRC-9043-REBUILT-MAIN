@@ -15,8 +15,19 @@ import edu.wpi.first.units.measure.Mass;
 public class DrivetrainConstants {
 
 
-  private static final Distance BUMPER_SIZE_X = Meters.of(0.9);
-  private static final Distance BUMPER_SIZE_Y = Meters.of(0.9);
+
+  public static final double P = 0.1;
+  public static final double I = 0.001;
+  public static final double D = 0.1;
+  public static final double IZ = 0.2;
+
+  public static final double S = 0.0;
+  public static final double G = 0.3;
+  public static final double V = 0.0;
+  public static final double A = 0.0;
+
+  private static final Distance BUMPER_SIZE_X = Meters.of(0.8);
+  private static final Distance BUMPER_SIZE_Y = Meters.of(0.8);
 
   private static final Mass ROBOT_MASS = Kilograms.of(57.924);
 

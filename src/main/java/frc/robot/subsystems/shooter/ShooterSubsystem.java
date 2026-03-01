@@ -34,4 +34,5 @@ public class ShooterSubsystem extends SubsystemBase {
     io.launchFuel(velocityMps, angleRad, this::incrementsScore);
     shootCount++;
   }
+
 }
